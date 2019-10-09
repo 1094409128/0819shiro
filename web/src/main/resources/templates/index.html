@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="logout">注销</a>
+<h1>hello world!!!</h1>
+
+<!--
+        guest:游客
+        游客模式:就是用户还没有认证就是游客
+    -->
+<shiro:guest>
+<h1>欢饮您！游客</h1>
+</shiro:guest>
+<!--用户认证成功了以后展示的内-->
+<shiro:user>  </shiro:user>
+<!--
+       在认证阶段SimpleAuthentication对象中的第一个参数
+           如果第一个参数传递的是username,在页面上会显示username
+           如果传递的是user对象，则会打印Object object/以字符串的形式把整个对象打印出来
+   -->
+<shiro:principal />
+<ul>
+    <!--<shiro:hasRole name="book_manager">:当拥有这个角色的时候，才会显示以下菜单-->
+    <shiro:hasRole name="book_manager">
+    <li><a href="bookPage">图书管理</a></li>
+    </shiro:hasRole>
+    <li shiro:hasRole="user_manager">用户管理</li>
+    <li>学生管理</li>
+    <li>垃圾分类管理</li>
+
+</ul>
+</body>
+</html>

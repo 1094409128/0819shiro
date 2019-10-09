@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>修改图书信息</h1>
+<form action="update" method="post">
+    <input type="hidden" name="id" th:value="${mapBook.id}"><br/>
+    图书名字<input type="text" name="bookName" th:value="${mapBook.bookName}"><br/>
+    图书类别<select name="categoryName">
+                <option th:each="Category : ${mapCategory}"
+                        th:text="${Category.categoryName}" th:value="${Category.id}"></option>
+            </select><br/>
+    图书价格<input type="number" name="money"  th:value="${mapBook.money}"><br/>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
